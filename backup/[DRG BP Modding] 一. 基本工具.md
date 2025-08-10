@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>Blog Title</title><link>https://HatsuEcho.github.io</link><description>Blog description</description><copyright>Blog Title</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://HatsuEcho.github.io</link></image><lastBuildDate>Sun, 10 Aug 2025 14:19:33 +0000</lastBuildDate><managingEditor>Blog Title</managingEditor><ttl>60</ttl><webMaster>Blog Title</webMaster><item><title>[DRG BP Modding] 一. 基本工具</title><link>https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-yi-.%20-ji-ben-gong-ju.html</link><description># 基础工具下载
+# 基础工具下载
 在开始制作你的 Mod 之前, 你需要先准备以下几种工具:
 - [Unreal Engine 4.27](https://www.unrealengine.com/zh-CN/download)
 - [DRGPacker](https://raw.githubusercontent.com/DRG-Modding/tools/main/loose-files/DRGPacker4.27.zip)
@@ -51,4 +50,4 @@
 ![Image](https://github.com/user-attachments/assets/b39ef855-d348-4406-b9e4-1be4dff95261)
 
 然后安装.
-至此, 准备工作完成.。</description><guid isPermaLink="true">https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-yi-.%20-ji-ben-gong-ju.html</guid><pubDate>Sun, 10 Aug 2025 14:19:05 +0000</pubDate></item></channel></rss>
+至此, 准备工作完成.
