@@ -1,5 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0"><channel><title>HatsuEcho</title><link>https://HatsuEcho.github.io</link><description>(⁠눈⁠‸⁠눈⁠)</description><copyright>HatsuEcho</copyright><docs>http://www.rssboard.org/rss-specification</docs><generator>python-feedgen</generator><image><url>https://github.githubassets.com/favicons/favicon.svg</url><title>avatar</title><link>https://HatsuEcho.github.io</link></image><lastBuildDate>Mon, 11 Aug 2025 05:43:41 +0000</lastBuildDate><managingEditor>HatsuEcho</managingEditor><ttl>60</ttl><webMaster>HatsuEcho</webMaster><item><title>[DRG BP Modding] 二. 制作你的第一个蓝图 Mod</title><link>https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-er-.%20-zhi-zuo-ni-de-di-yi-ge-lan-tu-%20Mod.html</link><description>按照上一章节的指引完成设置后, 双击 FSD-Template 文件夹下的 FSD.uproject 以打开引擎项目.
+按照上一章节的指引完成设置后, 双击 FSD-Template 文件夹下的 FSD.uproject 以打开引擎项目.
 
 ![Image](https://github.com/user-attachments/assets/727ca486-c7bb-48db-8de2-bbca26311cf1)
 
@@ -12,11 +11,11 @@
 
 ![Image](https://github.com/user-attachments/assets/5a6e5431-27ca-4453-9868-f624d690fde5)
 
-命名最好使用自己的 ID , 比如我会使用 '_HatsuEcho', 以避免与其他 Mod 路径重合.
+命名最好使用自己的 ID , 比如我会使用 "_HatsuEcho", 以避免与其他 Mod 路径重合.
 
 ![Image](https://github.com/user-attachments/assets/e8016cc5-3180-4aed-8444-4b62c68d0f37)
 
-在该文件夹下继续创建单独 Mod 的文件夹, 我们想做闪现 Mod, 就可以命名为 '_Teleport'.
+在该文件夹下继续创建单独 Mod 的文件夹, 我们想做闪现 Mod, 就可以命名为 "_Teleport".
 
 ![Image](https://github.com/user-attachments/assets/f72d45a0-dd6a-4d8e-91d4-71aeb89f1ae0)
 
@@ -44,9 +43,9 @@
 
 ![Image](https://github.com/user-attachments/assets/0157c549-0d1a-4cb0-b005-d4298a7198c5)
 
-引擎默认生成了三个事件节点, 我们只需要用到第一个 'Event BeginPlay' 事件, 所以可以把其余两个删掉, 左键框选节点, 按下 Delete 键即可删除.
+引擎默认生成了三个事件节点, 我们只需要用到第一个 "Event BeginPlay" 事件, 所以可以把其余两个删掉, 左键框选节点, 按下 Delete 键即可删除.
 按住右键拖动可以移动视图.
-在空白区单击右键打开节点窗口, 输入 'Get Local Player Character', 选择该节点.
+在空白区单击右键打开节点窗口, 输入 "Get Local Player Character", 选择该节点.
 
 ![Image](https://github.com/user-attachments/assets/625c28d4-8c9d-44ac-8f91-b6249b933326)
 
@@ -110,7 +109,7 @@
 
 ![Image](https://github.com/user-attachments/assets/34100dee-b981-4d40-b245-5b5e466e0c90)
 
-回到文件夹里, 对该 Actor 右键创建子类蓝图, 并命名为 'InitSpacerig', 重复这个步骤, 再创建一个子类蓝图命名为 'InitCave'.
+回到文件夹里, 对该 Actor 右键创建子类蓝图, 并命名为 "InitSpacerig", 重复这个步骤, 再创建一个子类蓝图命名为 "InitCave".
 InitSpacerig = Mod 会在太空站台加载.
 InitCave = Mod 会在洞穴(任务开始)内加载.
 如果不希望 Mod 在洞穴内生效, 则删除 InitCave, 反之亦然.
@@ -150,56 +149,4 @@ Ctrl+Shift+S 保存所有内容.
 
 ![Image](https://github.com/user-attachments/assets/116566d3-e95c-4c83-bcba-4aaae1676fe5)
 
-需要注意的是, 蓝图 Mod 需要放入 Mod 管理器或通过 Modio 订阅才能正常在游戏内加载.。</description><guid isPermaLink="true">https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-er-.%20-zhi-zuo-ni-de-di-yi-ge-lan-tu-%20Mod.html</guid><pubDate>Mon, 11 Aug 2025 05:43:11 +0000</pubDate></item><item><title>[DRG BP Modding] 一. 基本工具</title><link>https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-yi-.%20-ji-ben-gong-ju.html</link><description># 基础工具下载
-在开始制作你的 Mod 之前, 你需要先准备以下几种工具:
-- [Unreal Engine 4.27](https://www.unrealengine.com/zh-CN/download)
-- [DRGPacker](https://raw.githubusercontent.com/DRG-Modding/tools/main/loose-files/DRGPacker4.27.zip)
-- [FSD-Template](https://github.com/DRG-Modding/FSD-Template/archive/refs/heads/main.zip)
-- [DRG Community Modkit Project](https://drive.google.com/file/d/1fHSIPI14A9GJhrFsSjlh8e2t06AECYAO/view?usp=sharing)
-- [Visual Studio Community](https://visualstudio.microsoft.com/zh-hans/free-developer-offers/)
-
----
-# 基础设置
-## Unreal Engine
-打开 Epic 启动器, 选择虚幻引擎, 点击库.
-
-![Image](https://github.com/user-attachments/assets/49debe2e-5f38-4b65-8621-3bfa5e4341cf)
-
-点击图中+号, 添加引擎版本.
-
-![Image](https://github.com/user-attachments/assets/81ff216a-acf3-488b-b342-7607d2734bcf)
-
-选择4.27版本.
-
-![Image](https://github.com/user-attachments/assets/33d4ef71-8a9f-425c-82e2-695e8a41362a)
-
-点击图中选项.
-
-![Image](https://github.com/user-attachments/assets/46bf0b53-7929-499d-9087-a698dd6576d7)
-
-把除核心组件以外所有选项取消勾选, 我们不需要这些.
-
-![Image](https://github.com/user-attachments/assets/193abd27-9f9b-4a5d-9d19-882bfefd9685)
-
-然后正常安装即可.
-
----
-## FSD-Template
-把下载好的 FSD-Template.zip 和 DRG Community Modkit Project.zip 解压, 将 DRG Community Modkit Project 下的 Content 文件夹转移到 FSD-Template 文件夹下.
-
-![Image](https://github.com/user-attachments/assets/7b0169cb-b265-4909-ba42-bdba262be66d)
-
-确保文件结构如图所示.
-
----
-## Visual Studio Community
-打开安装包, 在工作负荷中, 勾选以下三种开发环境.
-
-![Image](https://github.com/user-attachments/assets/a86fa752-4d4a-4bb9-9685-938a68afbaec)
-
-在单个组件中, 勾选以下组件.
-
-![Image](https://github.com/user-attachments/assets/b39ef855-d348-4406-b9e4-1be4dff95261)
-
-然后安装.
-至此, 准备工作完成.。</description><guid isPermaLink="true">https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-yi-.%20-ji-ben-gong-ju.html</guid><pubDate>Sun, 10 Aug 2025 14:19:05 +0000</pubDate></item></channel></rss>
+需要注意的是, 蓝图 Mod 需要放入 Mod 管理器或通过 Modio 订阅才能正常在游戏内加载.
