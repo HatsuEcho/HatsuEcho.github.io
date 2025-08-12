@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="在个人文件夹下, 创建任务计时器文件夹.
+
+![Image](https://github.com/user-attachments/assets/22fd6d6e-3d73-4236-b73c-62d22d6a05c5)
+
+进入该文件夹, 右键创建用户控件蓝图.
+
+![Image](https://github.com/user-attachments/assets/7e73e362-d7fa-4360-83ea-c0b74cf13aa7)
+
+![Image](https://github.com/user-attachments/assets/ce236148-487f-43c6-883a-dfeb287ce5e1)
+
+打开控件蓝图, 在左侧将文本块拖入画布面板中
+
+![Image](https://github.com/user-attachments/assets/ac98721d-dcd0-4db6-bc21-6481952a87cd)
+
+锚点设置为顶部居中
+
+![Image](https://github.com/user-attachments/assets/df2f7b19-626f-4cd0-b4bb-447e4744f49a)
+
+并按照图中调整属性
+
+![Image](https://github.com/user-attachments/assets/aeeef444-44eb-4bfa-bbeb-dddbea3f0b9a)
+
+字体尺寸可以根据情况适当调整.
+接着修改文本块的命名, 设置为变量.
+
+![Image](https://github.com/user-attachments/assets/dc9241ca-bbaa-4faf-87da-bf34e3acaada)
+
+回到文件夹, 再创建一个用户控件蓝图, 用于该 Mod 的设置界面.
+
+![Image](https://github.com/user-attachments/assets/8c6ef87a-b375-4408-a2d7-834abcfe8f65)
+
+设置界面可随意设计, 只需确保你拥有勾选框, 并且设为变量.
+
+![Image](https://github.com/user-attachments/assets/cf9f5451-0de0-497d-a979-4fcdfb5b524f)
+
+![Image](https://github.com/user-attachments/assets/905a9f65-9043-416d-9c6a-74ff1b44f0d8)
+
+在文件夹内创建一个蓝图类, 类选择SaveGame.
+
+![Image](https://github.com/user-attachments/assets/d1a59e0b-d3d2-4cc0-9b0c-38e5472d0b2d)
+
+这会作为我们 Mod 的存档, 可以将需要保存的参数和设置保存到硬盘.
+打开存档蓝图, 创建一个布尔值变量.
+
+![Image](https://github.com/user-attachments/assets/550faf96-b71c-42a6-934e-13c40cdd086d)
+
+然后回到文件夹, 接下来创建 Mod 的主要蓝图, 类型为 Actor.
+
+![Image](https://github.com/user-attachments/assets/a2f9abff-908c-4ecd-be12-6622e15f9e41)
+
+关闭启用 Tick 和可被伤害.
+
+![Image](https://github.com/user-attachments/assets/d1bc18c6-cff5-4553-9732-2d987efc02b7)
+
+按照下图编写蓝图逻辑.
+
+![Image](https://github.com/user-attachments/assets/890878cf-9657-46fc-9871-2963a97a7435)
+
+你可能会好奇为什么每次都要循环查找本地玩家, 这么做的原因是确保当前不处在加载阶段, 并且许多涉及到玩家的变量需要获取有效的玩家数据.
+创建一个自定义事件, 随意命名. 你可以从左边事件拖出, 连接在前面的节点后执行, 并启用 Tick.
+
+![Image](https://github.com/user-attachments/assets/4a10e92b-7fb1-4178-ac2d-0d54b0369caa)
+
+在主要事件中, 使用序列节点, 先从路径加载存档, 路径可参考下图.
+
+![Image](https://github.com/user-attachments/assets/7240e998-6e21-4ae8-8bb7-dfb2fcee4471)
+
+判断有效性后 Cast 到存档蓝图, 若成功则设为变量, 无效或失败则创建对应存档.
+
+![Image](https://github.com/user-attachments/assets/ae8975e8-cb2a-40c9-8e6f-4b8492d70b19)
+
+之后创建设置界面 Widget.
+
+![Image](https://github.com/user-attachments/assets/710d404e-a78a-4ee7-880e-1eba54be2616)
+
+切换到设置界面蓝图图表, 创建一个变量, 变量类型为刚才创建的存档蓝图, 并且勾选可编辑实例和生成时公开.
+
+![Image](https://github.com/user-attachments/assets/4e2404be-6ca9-404a-9425-c6370034999e)
+
+回到主蓝图, 右键刷新节点, 就会看到存档的输入, 将存档连接到输入中.
+
+![Image](https://github.com/user-attachments/assets/faa81c8c-3024-4d51-9086-1c1924a3713f)
+
+![Image](https://github.com/user-attachments/assets/7d1754f3-b61b-48a8-ae0d-9ab5137be55a)
+
+继续创建计时器的小部件.
+
+![Image](https://github.com/user-attachments/assets/935f3f49-b7cb-4890-b32e-4a88107312dc)
+
+切换到设置界面蓝图图表, 在事件构造设置勾选框状态.
+从存档读取上一次 Mod 的开关.
+
+![Image](https://github.com/user-attachments/assets/ba93d32e-af07-4688-a212-7616fae87832)
+
+当然每一次开关的状态也要保存到存档中.
+
+![Image](https://github.com/user-attachments/assets/81c67975-f5b8-433b-9ba2-5228d72e026b)
+
+![Image](https://github.com/user-attachments/assets/4f40f715-6cdb-4592-b883-6d29a439725a)
+
+在主蓝图中, 还是从存档获取开关状态决定是否将小部件显示到画面中.
+
+![Image](https://github.com/user-attachments/assets/f0d96272-c7d4-461a-b7b9-cd2642244991)
+
+在设置界面蓝图里创建事件分发器, 并添加布尔值输入, 然后将事件拖到图表, 选择调用.
+这里的作用是当勾选框被勾选或取消时, 通过事件分发器告诉某蓝图, 以执行某些节点.
+
+![Image](https://github.com/user-attachments/assets/b7a0f559-7b8d-41e0-b63a-4c18d584c159)
+
+![Image](https://github.com/user-attachments/assets/6da51b7c-0a8f-40f6-a9fb-ded7112659da)
+
+别忘了在主蓝图中绑定这个事件.
+
+![Image](https://github.com/user-attachments/assets/a11ec68c-f37e-449a-843b-be1339560e5c)
+
+![Image](https://github.com/user-attachments/assets/1eda009d-66a8-4035-a3db-c9a309cae3f6)
+
+创建一个浮点值变量, 这里命名为 Time.
+
+![Image](https://github.com/user-attachments/assets/525c7471-f493-4c73-96ad-7662d217a966)
+
+在 Tick 事件中每帧对前一帧间隔相加, 就能得到累计的时间.
+
+![Image](https://github.com/user-attachments/assets/e1836081-805e-4a2c-81db-6238b5c78b23)
+
+再创建一个字符串变量, 并按下图对时间做简单的计算, 通过合并节点, 即可得到标准时间格式.
+
+![Image](https://github.com/user-attachments/assets/a161b35f-4736-4483-9d19-8d407047a404)
+
+然后设置小部件显示的文字.
+
+![Image](https://github.com/user-attachments/assets/effe97dc-fd32-4f4e-8f33-3a1df94454c0)
+
+到这里主要的逻辑就写好了, 但还有一些小设置需要做, 那就是将 Mod 设置界面绑定到 ModHub 中.
+先在设置界面蓝图图表上方点击类设置, 在左侧面板添加 IHub Page Widget 接口.
+
+![Image](https://github.com/user-attachments/assets/47c6032b-014d-4578-bc59-fe2a66217543)
+
+在接口里双击第一个函数, 页面的名称根据自己情况填写.
+
+![Image](https://github.com/user-attachments/assets/807cee4f-3e30-4ad3-90ef-6b57c701f6a8)
+
+![Image](https://github.com/user-attachments/assets/571ffd4e-183f-460b-a362-0f7853d4ad2c)
+
+接着回到主蓝图, 同样需要添加接口, 选择 IHub Mod.
+
+![Image](https://github.com/user-attachments/assets/6ce3dfe1-1876-47c4-a0ee-0f3e7505666c)
+
+按下图设置信息.
+
+![Image](https://github.com/user-attachments/assets/3a4c371a-5c85-4517-9e86-80907a38d71f)
+
+![Image](https://github.com/user-attachments/assets/4e5a0518-5db2-4a51-8ced-7840eb662c2b)
+
+注意, 如果设置界面UI无法连接到 Hub Pages, 请检查设置界面蓝图是否正确添加接口.
+最后在主蓝图设置保存逻辑.
+ModHub 关闭事件需要从左边接口的事件中右键选择实现事件得到.
+
+![Image](https://github.com/user-attachments/assets/2bf5f4f6-37f9-4b2b-9db1-d5588feeca08)
+
+![Image](https://github.com/user-attachments/assets/259271ff-20f5-4a21-9eb1-c2d3a9c30f86)
+
+至此整个 Mod 就完成了, 这里我只需要在洞穴加载.
+
+![Image](https://github.com/user-attachments/assets/bfb7d7f7-38f8-4d84-ad74-2aef3ffc469e)
+
+打包方法与前一张相同, 不再赘述, 最后到游戏里看看效果吧.
+
+![Image](https://github.com/user-attachments/assets/68cdaf71-cbe6-4c29-8d7c-04ee55d5bf91)
+
+![Image](https://github.com/user-attachments/assets/39751c30-72d3-4960-931e-6847a8c0e5a1)
+
+最后, 你的 Mod 存档会在这里.
+
+![Image](https://github.com/user-attachments/assets/c84920c6-4961-4392-8ba8-274eea39eaf5)。">
+<meta property="og:title" content="[DRG BP Modding] 三. 制作一个任务计时器">
+<meta property="og:description" content="在个人文件夹下, 创建任务计时器文件夹.
+
+![Image](https://github.com/user-attachments/assets/22fd6d6e-3d73-4236-b73c-62d22d6a05c5)
+
+进入该文件夹, 右键创建用户控件蓝图.
+
+![Image](https://github.com/user-attachments/assets/7e73e362-d7fa-4360-83ea-c0b74cf13aa7)
+
+![Image](https://github.com/user-attachments/assets/ce236148-487f-43c6-883a-dfeb287ce5e1)
+
+打开控件蓝图, 在左侧将文本块拖入画布面板中
+
+![Image](https://github.com/user-attachments/assets/ac98721d-dcd0-4db6-bc21-6481952a87cd)
+
+锚点设置为顶部居中
+
+![Image](https://github.com/user-attachments/assets/df2f7b19-626f-4cd0-b4bb-447e4744f49a)
+
+并按照图中调整属性
+
+![Image](https://github.com/user-attachments/assets/aeeef444-44eb-4bfa-bbeb-dddbea3f0b9a)
+
+字体尺寸可以根据情况适当调整.
+接着修改文本块的命名, 设置为变量.
+
+![Image](https://github.com/user-attachments/assets/dc9241ca-bbaa-4faf-87da-bf34e3acaada)
+
+回到文件夹, 再创建一个用户控件蓝图, 用于该 Mod 的设置界面.
+
+![Image](https://github.com/user-attachments/assets/8c6ef87a-b375-4408-a2d7-834abcfe8f65)
+
+设置界面可随意设计, 只需确保你拥有勾选框, 并且设为变量.
+
+![Image](https://github.com/user-attachments/assets/cf9f5451-0de0-497d-a979-4fcdfb5b524f)
+
+![Image](https://github.com/user-attachments/assets/905a9f65-9043-416d-9c6a-74ff1b44f0d8)
+
+在文件夹内创建一个蓝图类, 类选择SaveGame.
+
+![Image](https://github.com/user-attachments/assets/d1a59e0b-d3d2-4cc0-9b0c-38e5472d0b2d)
+
+这会作为我们 Mod 的存档, 可以将需要保存的参数和设置保存到硬盘.
+打开存档蓝图, 创建一个布尔值变量.
+
+![Image](https://github.com/user-attachments/assets/550faf96-b71c-42a6-934e-13c40cdd086d)
+
+然后回到文件夹, 接下来创建 Mod 的主要蓝图, 类型为 Actor.
+
+![Image](https://github.com/user-attachments/assets/a2f9abff-908c-4ecd-be12-6622e15f9e41)
+
+关闭启用 Tick 和可被伤害.
+
+![Image](https://github.com/user-attachments/assets/d1bc18c6-cff5-4553-9732-2d987efc02b7)
+
+按照下图编写蓝图逻辑.
+
+![Image](https://github.com/user-attachments/assets/890878cf-9657-46fc-9871-2963a97a7435)
+
+你可能会好奇为什么每次都要循环查找本地玩家, 这么做的原因是确保当前不处在加载阶段, 并且许多涉及到玩家的变量需要获取有效的玩家数据.
+创建一个自定义事件, 随意命名. 你可以从左边事件拖出, 连接在前面的节点后执行, 并启用 Tick.
+
+![Image](https://github.com/user-attachments/assets/4a10e92b-7fb1-4178-ac2d-0d54b0369caa)
+
+在主要事件中, 使用序列节点, 先从路径加载存档, 路径可参考下图.
+
+![Image](https://github.com/user-attachments/assets/7240e998-6e21-4ae8-8bb7-dfb2fcee4471)
+
+判断有效性后 Cast 到存档蓝图, 若成功则设为变量, 无效或失败则创建对应存档.
+
+![Image](https://github.com/user-attachments/assets/ae8975e8-cb2a-40c9-8e6f-4b8492d70b19)
+
+之后创建设置界面 Widget.
+
+![Image](https://github.com/user-attachments/assets/710d404e-a78a-4ee7-880e-1eba54be2616)
+
+切换到设置界面蓝图图表, 创建一个变量, 变量类型为刚才创建的存档蓝图, 并且勾选可编辑实例和生成时公开.
+
+![Image](https://github.com/user-attachments/assets/4e2404be-6ca9-404a-9425-c6370034999e)
+
+回到主蓝图, 右键刷新节点, 就会看到存档的输入, 将存档连接到输入中.
+
+![Image](https://github.com/user-attachments/assets/faa81c8c-3024-4d51-9086-1c1924a3713f)
+
+![Image](https://github.com/user-attachments/assets/7d1754f3-b61b-48a8-ae0d-9ab5137be55a)
+
+继续创建计时器的小部件.
+
+![Image](https://github.com/user-attachments/assets/935f3f49-b7cb-4890-b32e-4a88107312dc)
+
+切换到设置界面蓝图图表, 在事件构造设置勾选框状态.
+从存档读取上一次 Mod 的开关.
+
+![Image](https://github.com/user-attachments/assets/ba93d32e-af07-4688-a212-7616fae87832)
+
+当然每一次开关的状态也要保存到存档中.
+
+![Image](https://github.com/user-attachments/assets/81c67975-f5b8-433b-9ba2-5228d72e026b)
+
+![Image](https://github.com/user-attachments/assets/4f40f715-6cdb-4592-b883-6d29a439725a)
+
+在主蓝图中, 还是从存档获取开关状态决定是否将小部件显示到画面中.
+
+![Image](https://github.com/user-attachments/assets/f0d96272-c7d4-461a-b7b9-cd2642244991)
+
+在设置界面蓝图里创建事件分发器, 并添加布尔值输入, 然后将事件拖到图表, 选择调用.
+这里的作用是当勾选框被勾选或取消时, 通过事件分发器告诉某蓝图, 以执行某些节点.
+
+![Image](https://github.com/user-attachments/assets/b7a0f559-7b8d-41e0-b63a-4c18d584c159)
+
+![Image](https://github.com/user-attachments/assets/6da51b7c-0a8f-40f6-a9fb-ded7112659da)
+
+别忘了在主蓝图中绑定这个事件.
+
+![Image](https://github.com/user-attachments/assets/a11ec68c-f37e-449a-843b-be1339560e5c)
+
+![Image](https://github.com/user-attachments/assets/1eda009d-66a8-4035-a3db-c9a309cae3f6)
+
+创建一个浮点值变量, 这里命名为 Time.
+
+![Image](https://github.com/user-attachments/assets/525c7471-f493-4c73-96ad-7662d217a966)
+
+在 Tick 事件中每帧对前一帧间隔相加, 就能得到累计的时间.
+
+![Image](https://github.com/user-attachments/assets/e1836081-805e-4a2c-81db-6238b5c78b23)
+
+再创建一个字符串变量, 并按下图对时间做简单的计算, 通过合并节点, 即可得到标准时间格式.
+
+![Image](https://github.com/user-attachments/assets/a161b35f-4736-4483-9d19-8d407047a404)
+
+然后设置小部件显示的文字.
+
+![Image](https://github.com/user-attachments/assets/effe97dc-fd32-4f4e-8f33-3a1df94454c0)
+
+到这里主要的逻辑就写好了, 但还有一些小设置需要做, 那就是将 Mod 设置界面绑定到 ModHub 中.
+先在设置界面蓝图图表上方点击类设置, 在左侧面板添加 IHub Page Widget 接口.
+
+![Image](https://github.com/user-attachments/assets/47c6032b-014d-4578-bc59-fe2a66217543)
+
+在接口里双击第一个函数, 页面的名称根据自己情况填写.
+
+![Image](https://github.com/user-attachments/assets/807cee4f-3e30-4ad3-90ef-6b57c701f6a8)
+
+![Image](https://github.com/user-attachments/assets/571ffd4e-183f-460b-a362-0f7853d4ad2c)
+
+接着回到主蓝图, 同样需要添加接口, 选择 IHub Mod.
+
+![Image](https://github.com/user-attachments/assets/6ce3dfe1-1876-47c4-a0ee-0f3e7505666c)
+
+按下图设置信息.
+
+![Image](https://github.com/user-attachments/assets/3a4c371a-5c85-4517-9e86-80907a38d71f)
+
+![Image](https://github.com/user-attachments/assets/4e5a0518-5db2-4a51-8ced-7840eb662c2b)
+
+注意, 如果设置界面UI无法连接到 Hub Pages, 请检查设置界面蓝图是否正确添加接口.
+最后在主蓝图设置保存逻辑.
+ModHub 关闭事件需要从左边接口的事件中右键选择实现事件得到.
+
+![Image](https://github.com/user-attachments/assets/2bf5f4f6-37f9-4b2b-9db1-d5588feeca08)
+
+![Image](https://github.com/user-attachments/assets/259271ff-20f5-4a21-9eb1-c2d3a9c30f86)
+
+至此整个 Mod 就完成了, 这里我只需要在洞穴加载.
+
+![Image](https://github.com/user-attachments/assets/bfb7d7f7-38f8-4d84-ad74-2aef3ffc469e)
+
+打包方法与前一张相同, 不再赘述, 最后到游戏里看看效果吧.
+
+![Image](https://github.com/user-attachments/assets/68cdaf71-cbe6-4c29-8d7c-04ee55d5bf91)
+
+![Image](https://github.com/user-attachments/assets/39751c30-72d3-4960-931e-6847a8c0e5a1)
+
+最后, 你的 Mod 存档会在这里.
+
+![Image](https://github.com/user-attachments/assets/c84920c6-4961-4392-8ba8-274eea39eaf5)。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-san-.%20-zhi-zuo-yi-ge-ren-wu-ji-shi-qi.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>[DRG BP Modding] 三. 制作一个任务计时器</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">[DRG BP Modding] 三. 制作一个任务计时器</h1>
+<div class="title-right">
+    <a href="https://HatsuEcho.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/HatsuEcho/HatsuEcho.github.io/issues/3" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>在个人文件夹下, 创建任务计时器文件夹.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/22fd6d6e-3d73-4236-b73c-62d22d6a05c5"><img src="https://github.com/user-attachments/assets/22fd6d6e-3d73-4236-b73c-62d22d6a05c5" alt="Image" style="max-width: 100%;"></a></p>
+<p>进入该文件夹, 右键创建用户控件蓝图.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7e73e362-d7fa-4360-83ea-c0b74cf13aa7"><img src="https://github.com/user-attachments/assets/7e73e362-d7fa-4360-83ea-c0b74cf13aa7" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ce236148-487f-43c6-883a-dfeb287ce5e1"><img src="https://github.com/user-attachments/assets/ce236148-487f-43c6-883a-dfeb287ce5e1" alt="Image" style="max-width: 100%;"></a></p>
+<p>打开控件蓝图, 在左侧将文本块拖入画布面板中</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ac98721d-dcd0-4db6-bc21-6481952a87cd"><img src="https://github.com/user-attachments/assets/ac98721d-dcd0-4db6-bc21-6481952a87cd" alt="Image" style="max-width: 100%;"></a></p>
+<p>锚点设置为顶部居中</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/df2f7b19-626f-4cd0-b4bb-447e4744f49a"><img src="https://github.com/user-attachments/assets/df2f7b19-626f-4cd0-b4bb-447e4744f49a" alt="Image" style="max-width: 100%;"></a></p>
+<p>并按照图中调整属性</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/aeeef444-44eb-4bfa-bbeb-dddbea3f0b9a"><img src="https://github.com/user-attachments/assets/aeeef444-44eb-4bfa-bbeb-dddbea3f0b9a" alt="Image" style="max-width: 100%;"></a></p>
+<p>字体尺寸可以根据情况适当调整.<br>
+接着修改文本块的命名, 设置为变量.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/dc9241ca-bbaa-4faf-87da-bf34e3acaada"><img src="https://github.com/user-attachments/assets/dc9241ca-bbaa-4faf-87da-bf34e3acaada" alt="Image" style="max-width: 100%;"></a></p>
+<p>回到文件夹, 再创建一个用户控件蓝图, 用于该 Mod 的设置界面.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8c6ef87a-b375-4408-a2d7-834abcfe8f65"><img src="https://github.com/user-attachments/assets/8c6ef87a-b375-4408-a2d7-834abcfe8f65" alt="Image" style="max-width: 100%;"></a></p>
+<p>设置界面可随意设计, 只需确保你拥有勾选框, 并且设为变量.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/cf9f5451-0de0-497d-a979-4fcdfb5b524f"><img src="https://github.com/user-attachments/assets/cf9f5451-0de0-497d-a979-4fcdfb5b524f" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/905a9f65-9043-416d-9c6a-74ff1b44f0d8"><img src="https://github.com/user-attachments/assets/905a9f65-9043-416d-9c6a-74ff1b44f0d8" alt="Image" style="max-width: 100%;"></a></p>
+<p>在文件夹内创建一个蓝图类, 类选择SaveGame.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d1a59e0b-d3d2-4cc0-9b0c-38e5472d0b2d"><img src="https://github.com/user-attachments/assets/d1a59e0b-d3d2-4cc0-9b0c-38e5472d0b2d" alt="Image" style="max-width: 100%;"></a></p>
+<p>这会作为我们 Mod 的存档, 可以将需要保存的参数和设置保存到硬盘.<br>
+打开存档蓝图, 创建一个布尔值变量.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/550faf96-b71c-42a6-934e-13c40cdd086d"><img src="https://github.com/user-attachments/assets/550faf96-b71c-42a6-934e-13c40cdd086d" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后回到文件夹, 接下来创建 Mod 的主要蓝图, 类型为 Actor.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a2f9abff-908c-4ecd-be12-6622e15f9e41"><img src="https://github.com/user-attachments/assets/a2f9abff-908c-4ecd-be12-6622e15f9e41" alt="Image" style="max-width: 100%;"></a></p>
+<p>关闭启用 Tick 和可被伤害.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d1bc18c6-cff5-4553-9732-2d987efc02b7"><img src="https://github.com/user-attachments/assets/d1bc18c6-cff5-4553-9732-2d987efc02b7" alt="Image" style="max-width: 100%;"></a></p>
+<p>按照下图编写蓝图逻辑.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/890878cf-9657-46fc-9871-2963a97a7435"><img src="https://github.com/user-attachments/assets/890878cf-9657-46fc-9871-2963a97a7435" alt="Image" style="max-width: 100%;"></a></p>
+<p>你可能会好奇为什么每次都要循环查找本地玩家, 这么做的原因是确保当前不处在加载阶段, 并且许多涉及到玩家的变量需要获取有效的玩家数据.<br>
+创建一个自定义事件, 随意命名. 你可以从左边事件拖出, 连接在前面的节点后执行, 并启用 Tick.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4a10e92b-7fb1-4178-ac2d-0d54b0369caa"><img src="https://github.com/user-attachments/assets/4a10e92b-7fb1-4178-ac2d-0d54b0369caa" alt="Image" style="max-width: 100%;"></a></p>
+<p>在主要事件中, 使用序列节点, 先从路径加载存档, 路径可参考下图.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7240e998-6e21-4ae8-8bb7-dfb2fcee4471"><img src="https://github.com/user-attachments/assets/7240e998-6e21-4ae8-8bb7-dfb2fcee4471" alt="Image" style="max-width: 100%;"></a></p>
+<p>判断有效性后 Cast 到存档蓝图, 若成功则设为变量, 无效或失败则创建对应存档.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ae8975e8-cb2a-40c9-8e6f-4b8492d70b19"><img src="https://github.com/user-attachments/assets/ae8975e8-cb2a-40c9-8e6f-4b8492d70b19" alt="Image" style="max-width: 100%;"></a></p>
+<p>之后创建设置界面 Widget.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/710d404e-a78a-4ee7-880e-1eba54be2616"><img src="https://github.com/user-attachments/assets/710d404e-a78a-4ee7-880e-1eba54be2616" alt="Image" style="max-width: 100%;"></a></p>
+<p>切换到设置界面蓝图图表, 创建一个变量, 变量类型为刚才创建的存档蓝图, 并且勾选可编辑实例和生成时公开.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4e2404be-6ca9-404a-9425-c6370034999e"><img src="https://github.com/user-attachments/assets/4e2404be-6ca9-404a-9425-c6370034999e" alt="Image" style="max-width: 100%;"></a></p>
+<p>回到主蓝图, 右键刷新节点, 就会看到存档的输入, 将存档连接到输入中.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/faa81c8c-3024-4d51-9086-1c1924a3713f"><img src="https://github.com/user-attachments/assets/faa81c8c-3024-4d51-9086-1c1924a3713f" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7d1754f3-b61b-48a8-ae0d-9ab5137be55a"><img src="https://github.com/user-attachments/assets/7d1754f3-b61b-48a8-ae0d-9ab5137be55a" alt="Image" style="max-width: 100%;"></a></p>
+<p>继续创建计时器的小部件.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/935f3f49-b7cb-4890-b32e-4a88107312dc"><img src="https://github.com/user-attachments/assets/935f3f49-b7cb-4890-b32e-4a88107312dc" alt="Image" style="max-width: 100%;"></a></p>
+<p>切换到设置界面蓝图图表, 在事件构造设置勾选框状态.<br>
+从存档读取上一次 Mod 的开关.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ba93d32e-af07-4688-a212-7616fae87832"><img src="https://github.com/user-attachments/assets/ba93d32e-af07-4688-a212-7616fae87832" alt="Image" style="max-width: 100%;"></a></p>
+<p>当然每一次开关的状态也要保存到存档中.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/81c67975-f5b8-433b-9ba2-5228d72e026b"><img src="https://github.com/user-attachments/assets/81c67975-f5b8-433b-9ba2-5228d72e026b" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4f40f715-6cdb-4592-b883-6d29a439725a"><img src="https://github.com/user-attachments/assets/4f40f715-6cdb-4592-b883-6d29a439725a" alt="Image" style="max-width: 100%;"></a></p>
+<p>在主蓝图中, 还是从存档获取开关状态决定是否将小部件显示到画面中.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f0d96272-c7d4-461a-b7b9-cd2642244991"><img src="https://github.com/user-attachments/assets/f0d96272-c7d4-461a-b7b9-cd2642244991" alt="Image" style="max-width: 100%;"></a></p>
+<p>在设置界面蓝图里创建事件分发器, 并添加布尔值输入, 然后将事件拖到图表, 选择调用.<br>
+这里的作用是当勾选框被勾选或取消时, 通过事件分发器告诉某蓝图, 以执行某些节点.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b7a0f559-7b8d-41e0-b63a-4c18d584c159"><img src="https://github.com/user-attachments/assets/b7a0f559-7b8d-41e0-b63a-4c18d584c159" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6da51b7c-0a8f-40f6-a9fb-ded7112659da"><img src="https://github.com/user-attachments/assets/6da51b7c-0a8f-40f6-a9fb-ded7112659da" alt="Image" style="max-width: 100%;"></a></p>
+<p>别忘了在主蓝图中绑定这个事件.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a11ec68c-f37e-449a-843b-be1339560e5c"><img src="https://github.com/user-attachments/assets/a11ec68c-f37e-449a-843b-be1339560e5c" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/1eda009d-66a8-4035-a3db-c9a309cae3f6"><img src="https://github.com/user-attachments/assets/1eda009d-66a8-4035-a3db-c9a309cae3f6" alt="Image" style="max-width: 100%;"></a></p>
+<p>创建一个浮点值变量, 这里命名为 Time.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/525c7471-f493-4c73-96ad-7662d217a966"><img src="https://github.com/user-attachments/assets/525c7471-f493-4c73-96ad-7662d217a966" alt="Image" style="max-width: 100%;"></a></p>
+<p>在 Tick 事件中每帧对前一帧间隔相加, 就能得到累计的时间.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e1836081-805e-4a2c-81db-6238b5c78b23"><img src="https://github.com/user-attachments/assets/e1836081-805e-4a2c-81db-6238b5c78b23" alt="Image" style="max-width: 100%;"></a></p>
+<p>再创建一个字符串变量, 并按下图对时间做简单的计算, 通过合并节点, 即可得到标准时间格式.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/a161b35f-4736-4483-9d19-8d407047a404"><img src="https://github.com/user-attachments/assets/a161b35f-4736-4483-9d19-8d407047a404" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后设置小部件显示的文字.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/effe97dc-fd32-4f4e-8f33-3a1df94454c0"><img src="https://github.com/user-attachments/assets/effe97dc-fd32-4f4e-8f33-3a1df94454c0" alt="Image" style="max-width: 100%;"></a></p>
+<p>到这里主要的逻辑就写好了, 但还有一些小设置需要做, 那就是将 Mod 设置界面绑定到 ModHub 中.<br>
+先在设置界面蓝图图表上方点击类设置, 在左侧面板添加 IHub Page Widget 接口.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/47c6032b-014d-4578-bc59-fe2a66217543"><img src="https://github.com/user-attachments/assets/47c6032b-014d-4578-bc59-fe2a66217543" alt="Image" style="max-width: 100%;"></a></p>
+<p>在接口里双击第一个函数, 页面的名称根据自己情况填写.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/807cee4f-3e30-4ad3-90ef-6b57c701f6a8"><img src="https://github.com/user-attachments/assets/807cee4f-3e30-4ad3-90ef-6b57c701f6a8" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/571ffd4e-183f-460b-a362-0f7853d4ad2c"><img src="https://github.com/user-attachments/assets/571ffd4e-183f-460b-a362-0f7853d4ad2c" alt="Image" style="max-width: 100%;"></a></p>
+<p>接着回到主蓝图, 同样需要添加接口, 选择 IHub Mod.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6ce3dfe1-1876-47c4-a0ee-0f3e7505666c"><img src="https://github.com/user-attachments/assets/6ce3dfe1-1876-47c4-a0ee-0f3e7505666c" alt="Image" style="max-width: 100%;"></a></p>
+<p>按下图设置信息.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/3a4c371a-5c85-4517-9e86-80907a38d71f"><img src="https://github.com/user-attachments/assets/3a4c371a-5c85-4517-9e86-80907a38d71f" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/4e5a0518-5db2-4a51-8ced-7840eb662c2b"><img src="https://github.com/user-attachments/assets/4e5a0518-5db2-4a51-8ced-7840eb662c2b" alt="Image" style="max-width: 100%;"></a></p>
+<p>注意, 如果设置界面UI无法连接到 Hub Pages, 请检查设置界面蓝图是否正确添加接口.<br>
+最后在主蓝图设置保存逻辑.<br>
+ModHub 关闭事件需要从左边接口的事件中右键选择实现事件得到.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2bf5f4f6-37f9-4b2b-9db1-d5588feeca08"><img src="https://github.com/user-attachments/assets/2bf5f4f6-37f9-4b2b-9db1-d5588feeca08" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/259271ff-20f5-4a21-9eb1-c2d3a9c30f86"><img src="https://github.com/user-attachments/assets/259271ff-20f5-4a21-9eb1-c2d3a9c30f86" alt="Image" style="max-width: 100%;"></a></p>
+<p>至此整个 Mod 就完成了, 这里我只需要在洞穴加载.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/bfb7d7f7-38f8-4d84-ad74-2aef3ffc469e"><img src="https://github.com/user-attachments/assets/bfb7d7f7-38f8-4d84-ad74-2aef3ffc469e" alt="Image" style="max-width: 100%;"></a></p>
+<p>打包方法与前一张相同, 不再赘述, 最后到游戏里看看效果吧.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/68cdaf71-cbe6-4c29-8d7c-04ee55d5bf91"><img src="https://github.com/user-attachments/assets/68cdaf71-cbe6-4c29-8d7c-04ee55d5bf91" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/39751c30-72d3-4960-931e-6847a8c0e5a1"><img src="https://github.com/user-attachments/assets/39751c30-72d3-4960-931e-6847a8c0e5a1" alt="Image" style="max-width: 100%;"></a></p>
+<p>最后, 你的 Mod 存档会在这里.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c84920c6-4961-4392-8ba8-274eea39eaf5"><img src="https://github.com/user-attachments/assets/c84920c6-4961-4392-8ba8-274eea39eaf5" alt="Image" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://HatsuEcho.github.io">HatsuEcho</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","HatsuEcho/HatsuEcho.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+
+
+</html>
