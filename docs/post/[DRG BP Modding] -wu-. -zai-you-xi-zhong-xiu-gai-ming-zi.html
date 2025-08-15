@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html data-color-mode="light" data-dark-theme="dark" data-light-theme="light" lang="zh-CN">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href='https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/Primer/21.0.7/primer.css' rel='stylesheet' />
+    
+    <link rel="icon" href="https://github.githubassets.com/favicons/favicon.svg"><script>
+        let theme = localStorage.getItem("meek_theme") || "light";
+        document.documentElement.setAttribute("data-color-mode", theme);
+    </script>
+<meta name="description" content="这次要做的 Mod 会相对有趣一些, 但同时比较麻烦, 需要使用一些特殊手段, 请务必严格按照教程来做.
+前面的步骤就不解释了, 如果你从前面几章看下来, 基本都知道要做什么.
+
+![Image](https://github.com/user-attachments/assets/e7cf4344-3ccb-48dd-8777-a2c69d8af7ee)
+
+![Image](https://github.com/user-attachments/assets/1c1e092d-3bd9-4f7c-8fde-efb963e1a56f)
+
+打开蓝图, 把父类改成玩家控制器.
+
+![Image](https://github.com/user-attachments/assets/959bb825-95eb-455c-b902-fc77330c73ed)
+
+随便放置一个节点, 比如这个.
+
+![Image](https://github.com/user-attachments/assets/b2536f3c-3be9-4174-a2ed-a8bb6b6bbbf3)
+
+然后随便找个地方右键新建关卡.
+
+![Image](https://github.com/user-attachments/assets/2332114d-2940-4015-91ee-a1bf8639a421)
+
+在左上角编辑, 项目设置, 左边选择地图和模式, 将地图设为刚才新建的关卡.
+
+![Image](https://github.com/user-attachments/assets/9e5e75d7-46cf-4cf9-8d23-8d2ef7662cd3)
+
+然后重启一下引擎.
+打开关卡蓝图.
+
+![Image](https://github.com/user-attachments/assets/e730d3d1-ba96-4e38-9670-7e95816c813b)
+
+放置该节点.
+
+![Image](https://github.com/user-attachments/assets/7ab9543b-e41e-41a5-9c17-a59e184e590f)
+
+复制主蓝图的引用.
+
+![Image](https://github.com/user-attachments/assets/2dc58cf3-ea9e-410f-87af-c6f324727b14)
+
+把长引用粘贴到节点中, 并且去掉前面和后面多余的的内容, 看起来像这样.
+
+![Image](https://github.com/user-attachments/assets/620011cc-e121-4986-a54a-fe8f10d20566)
+
+回到主蓝图, 右键复制这个节点, 然后粘贴到记事本中.
+
+![Image](https://github.com/user-attachments/assets/462ea549-9846-47c5-b4fb-da9f525c0bac)
+
+在该节点后面继续添加 `:EventGraph.` .
+
+![Image](https://github.com/user-attachments/assets/0458ac7c-0059-44c1-9c7f-121c9e20f3b4)
+
+然后在记事本中找到这个节点在编辑器中的名称, 复制粘贴到节点后方.
+
+![Image](https://github.com/user-attachments/assets/8d457d11-2532-4652-885f-af4de2ed5211)
+
+![Image](https://github.com/user-attachments/assets/9dbef1d8-22d5-42fc-95c8-700d85ddb35d)
+
+然后依次放置这些节点.
+
+![Image](https://github.com/user-attachments/assets/f4d52d98-6307-4bd1-a6f5-b2b1b0c5eeaf)
+
+![Image](https://github.com/user-attachments/assets/479b6b9c-4e55-4c97-a5c7-77f2123055f4)
+
+接着在文件夹中新建蓝图函数库.
+
+![Image](https://github.com/user-attachments/assets/8a137cb3-4840-45c0-9173-59834fccd8cf)
+
+![Image](https://github.com/user-attachments/assets/512063a7-d306-401e-acc2-9680cba2a5a7)
+
+在函数库里新建这两个函数, 名字必须跟图中一样, 然后不要点保存.
+
+![Image](https://github.com/user-attachments/assets/21ed31db-0d30-4fb3-bb6b-f8ff52026f6a)
+
+到关卡蓝图中调用这两个函数.
+
+![Image](https://github.com/user-attachments/assets/d0359fb1-4970-459e-82ad-f58462256937)
+
+保存好所有内容, 但是不要保存刚才新建的函数库, 然后关闭引擎重新打开.
+
+![Image](https://github.com/user-attachments/assets/2958d3e0-3d77-4779-b1be-4e4895ccaafe)
+
+忽略错误信息, 打开关卡蓝图, 可以看到, 这两个被人为隐藏的函数通过这种方法诱导出来了.
+对这个函数填上变量值.
+
+![Image](https://github.com/user-attachments/assets/cad0e3d8-7d02-42b9-a81b-36837ccebf6a)
+
+然后新建一个变量, 类型为命中结果.
+
+![Image](https://github.com/user-attachments/assets/262c3e8e-9447-4b43-a4b8-6bb1b80a6b3e)
+
+选中该变量, Ctrl + C 复制粘贴到记事本中.
+
+![Image](https://github.com/user-attachments/assets/07de774b-debf-481c-96d9-7bf06c4226d2)
+
+找到图中这一个字段, 将 `HitResult` 修改为 `MemberReference` .
+
+![Image](https://github.com/user-attachments/assets/7682cf4a-8177-4894-bb71-7240b98daa9a)
+
+![Image](https://github.com/user-attachments/assets/b31437b5-f458-4750-8a13-d4db0959ed9c)
+
+然后把刚才粘贴的这一整段复制, 回到编辑器, 粘贴变量.
+
+![Image](https://github.com/user-attachments/assets/090c432a-ce38-45b2-909d-72109f4686c4)
+
+![Image](https://github.com/user-attachments/assets/9f490e22-72a0-4562-87cc-b20e8b2b71d7)
+
+继续复制该变量的默认值, 粘贴到记事本.
+找到这一段, 填上 `ServerChangeName` .
+
+![Image](https://github.com/user-attachments/assets/04c88249-0e65-4f7e-b953-abbb181c008c)
+
+![Image](https://github.com/user-attachments/assets/6e98f5e8-8ffa-4db7-b299-c65265bba1f7)
+
+复制主蓝图的引用, 替换这一段, 并掐头去尾, 在尾部加上 `_C` .
+
+![Image](https://github.com/user-attachments/assets/70c9dbdf-d771-4099-bdc4-2d31e59f4cf9)
+
+![Image](https://github.com/user-attachments/assets/34286f23-6c3b-4817-b8da-fb7461ec4be1)
+
+![Image](https://github.com/user-attachments/assets/39093d0f-a338-41b5-9089-5b106d91e479)
+
+接着复制这一段, 粘贴到变量的默认值.
+
+![Image](https://github.com/user-attachments/assets/142b7d8b-9059-441f-ab18-fd636d2508a2)
+
+把节点连接上, 编译保存.
+
+![Image](https://github.com/user-attachments/assets/2aa8aa65-e1a8-4ca4-b8d4-a6c1ab2b446d)
+
+然后运行该关卡, 等待1-2秒后关闭.
+
+![Image](https://github.com/user-attachments/assets/8080ce84-6b52-42d5-8797-0bb2cf5f6159)
+
+打开主蓝图, 右键刷新节点, 可以看到原本的节点已经被我们篡改成这个被隐藏起来的节点, 但我们并不能通过编译, 因为该节点被人为设置成不允许调用.
+
+![Image](https://github.com/user-attachments/assets/c72fc17a-e141-4860-bf92-0f2d82eb4d41)
+
+我们先断开这个节点的连接.
+回到关卡蓝图, 连上第二个函数, 并填写好变量信息.
+
+![Image](https://github.com/user-attachments/assets/ad052a36-4474-412a-bbec-afa9e4657694)
+
+然后再运行一次关卡, 退出, 这时可以看到, 节点已经成功通过编译了!
+
+![Image](https://github.com/user-attachments/assets/e19cc79b-d788-4ce0-8c62-a68ee530fcf0)
+
+还没完, 记得把主蓝图的父类改回actor.
+改回actor后, 就可以开始写你的 Mod 了.
+
+![Image](https://github.com/user-attachments/assets/42c72a55-f3b3-4324-a978-532848d73906)
+
+![Image](https://github.com/user-attachments/assets/d881c13a-94dc-4c6b-881c-73bc183e5015)
+
+最后记得删掉关卡蓝图的内容.
+
+![Image](https://github.com/user-attachments/assets/fc4cb8f3-b787-4ec6-811f-94a9ef182664)。">
+<meta property="og:title" content="[DRG BP Modding] 五. 在游戏中修改名字">
+<meta property="og:description" content="这次要做的 Mod 会相对有趣一些, 但同时比较麻烦, 需要使用一些特殊手段, 请务必严格按照教程来做.
+前面的步骤就不解释了, 如果你从前面几章看下来, 基本都知道要做什么.
+
+![Image](https://github.com/user-attachments/assets/e7cf4344-3ccb-48dd-8777-a2c69d8af7ee)
+
+![Image](https://github.com/user-attachments/assets/1c1e092d-3bd9-4f7c-8fde-efb963e1a56f)
+
+打开蓝图, 把父类改成玩家控制器.
+
+![Image](https://github.com/user-attachments/assets/959bb825-95eb-455c-b902-fc77330c73ed)
+
+随便放置一个节点, 比如这个.
+
+![Image](https://github.com/user-attachments/assets/b2536f3c-3be9-4174-a2ed-a8bb6b6bbbf3)
+
+然后随便找个地方右键新建关卡.
+
+![Image](https://github.com/user-attachments/assets/2332114d-2940-4015-91ee-a1bf8639a421)
+
+在左上角编辑, 项目设置, 左边选择地图和模式, 将地图设为刚才新建的关卡.
+
+![Image](https://github.com/user-attachments/assets/9e5e75d7-46cf-4cf9-8d23-8d2ef7662cd3)
+
+然后重启一下引擎.
+打开关卡蓝图.
+
+![Image](https://github.com/user-attachments/assets/e730d3d1-ba96-4e38-9670-7e95816c813b)
+
+放置该节点.
+
+![Image](https://github.com/user-attachments/assets/7ab9543b-e41e-41a5-9c17-a59e184e590f)
+
+复制主蓝图的引用.
+
+![Image](https://github.com/user-attachments/assets/2dc58cf3-ea9e-410f-87af-c6f324727b14)
+
+把长引用粘贴到节点中, 并且去掉前面和后面多余的的内容, 看起来像这样.
+
+![Image](https://github.com/user-attachments/assets/620011cc-e121-4986-a54a-fe8f10d20566)
+
+回到主蓝图, 右键复制这个节点, 然后粘贴到记事本中.
+
+![Image](https://github.com/user-attachments/assets/462ea549-9846-47c5-b4fb-da9f525c0bac)
+
+在该节点后面继续添加 `:EventGraph.` .
+
+![Image](https://github.com/user-attachments/assets/0458ac7c-0059-44c1-9c7f-121c9e20f3b4)
+
+然后在记事本中找到这个节点在编辑器中的名称, 复制粘贴到节点后方.
+
+![Image](https://github.com/user-attachments/assets/8d457d11-2532-4652-885f-af4de2ed5211)
+
+![Image](https://github.com/user-attachments/assets/9dbef1d8-22d5-42fc-95c8-700d85ddb35d)
+
+然后依次放置这些节点.
+
+![Image](https://github.com/user-attachments/assets/f4d52d98-6307-4bd1-a6f5-b2b1b0c5eeaf)
+
+![Image](https://github.com/user-attachments/assets/479b6b9c-4e55-4c97-a5c7-77f2123055f4)
+
+接着在文件夹中新建蓝图函数库.
+
+![Image](https://github.com/user-attachments/assets/8a137cb3-4840-45c0-9173-59834fccd8cf)
+
+![Image](https://github.com/user-attachments/assets/512063a7-d306-401e-acc2-9680cba2a5a7)
+
+在函数库里新建这两个函数, 名字必须跟图中一样, 然后不要点保存.
+
+![Image](https://github.com/user-attachments/assets/21ed31db-0d30-4fb3-bb6b-f8ff52026f6a)
+
+到关卡蓝图中调用这两个函数.
+
+![Image](https://github.com/user-attachments/assets/d0359fb1-4970-459e-82ad-f58462256937)
+
+保存好所有内容, 但是不要保存刚才新建的函数库, 然后关闭引擎重新打开.
+
+![Image](https://github.com/user-attachments/assets/2958d3e0-3d77-4779-b1be-4e4895ccaafe)
+
+忽略错误信息, 打开关卡蓝图, 可以看到, 这两个被人为隐藏的函数通过这种方法诱导出来了.
+对这个函数填上变量值.
+
+![Image](https://github.com/user-attachments/assets/cad0e3d8-7d02-42b9-a81b-36837ccebf6a)
+
+然后新建一个变量, 类型为命中结果.
+
+![Image](https://github.com/user-attachments/assets/262c3e8e-9447-4b43-a4b8-6bb1b80a6b3e)
+
+选中该变量, Ctrl + C 复制粘贴到记事本中.
+
+![Image](https://github.com/user-attachments/assets/07de774b-debf-481c-96d9-7bf06c4226d2)
+
+找到图中这一个字段, 将 `HitResult` 修改为 `MemberReference` .
+
+![Image](https://github.com/user-attachments/assets/7682cf4a-8177-4894-bb71-7240b98daa9a)
+
+![Image](https://github.com/user-attachments/assets/b31437b5-f458-4750-8a13-d4db0959ed9c)
+
+然后把刚才粘贴的这一整段复制, 回到编辑器, 粘贴变量.
+
+![Image](https://github.com/user-attachments/assets/090c432a-ce38-45b2-909d-72109f4686c4)
+
+![Image](https://github.com/user-attachments/assets/9f490e22-72a0-4562-87cc-b20e8b2b71d7)
+
+继续复制该变量的默认值, 粘贴到记事本.
+找到这一段, 填上 `ServerChangeName` .
+
+![Image](https://github.com/user-attachments/assets/04c88249-0e65-4f7e-b953-abbb181c008c)
+
+![Image](https://github.com/user-attachments/assets/6e98f5e8-8ffa-4db7-b299-c65265bba1f7)
+
+复制主蓝图的引用, 替换这一段, 并掐头去尾, 在尾部加上 `_C` .
+
+![Image](https://github.com/user-attachments/assets/70c9dbdf-d771-4099-bdc4-2d31e59f4cf9)
+
+![Image](https://github.com/user-attachments/assets/34286f23-6c3b-4817-b8da-fb7461ec4be1)
+
+![Image](https://github.com/user-attachments/assets/39093d0f-a338-41b5-9089-5b106d91e479)
+
+接着复制这一段, 粘贴到变量的默认值.
+
+![Image](https://github.com/user-attachments/assets/142b7d8b-9059-441f-ab18-fd636d2508a2)
+
+把节点连接上, 编译保存.
+
+![Image](https://github.com/user-attachments/assets/2aa8aa65-e1a8-4ca4-b8d4-a6c1ab2b446d)
+
+然后运行该关卡, 等待1-2秒后关闭.
+
+![Image](https://github.com/user-attachments/assets/8080ce84-6b52-42d5-8797-0bb2cf5f6159)
+
+打开主蓝图, 右键刷新节点, 可以看到原本的节点已经被我们篡改成这个被隐藏起来的节点, 但我们并不能通过编译, 因为该节点被人为设置成不允许调用.
+
+![Image](https://github.com/user-attachments/assets/c72fc17a-e141-4860-bf92-0f2d82eb4d41)
+
+我们先断开这个节点的连接.
+回到关卡蓝图, 连上第二个函数, 并填写好变量信息.
+
+![Image](https://github.com/user-attachments/assets/ad052a36-4474-412a-bbec-afa9e4657694)
+
+然后再运行一次关卡, 退出, 这时可以看到, 节点已经成功通过编译了!
+
+![Image](https://github.com/user-attachments/assets/e19cc79b-d788-4ce0-8c62-a68ee530fcf0)
+
+还没完, 记得把主蓝图的父类改回actor.
+改回actor后, 就可以开始写你的 Mod 了.
+
+![Image](https://github.com/user-attachments/assets/42c72a55-f3b3-4324-a978-532848d73906)
+
+![Image](https://github.com/user-attachments/assets/d881c13a-94dc-4c6b-881c-73bc183e5015)
+
+最后记得删掉关卡蓝图的内容.
+
+![Image](https://github.com/user-attachments/assets/fc4cb8f3-b787-4ec6-811f-94a9ef182664)。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://HatsuEcho.github.io/post/%5BDRG%20BP%20Modding%5D%20-wu-.%20-zai-you-xi-zhong-xiu-gai-ming-zi.html">
+<meta property="og:image" content="https://github.githubassets.com/favicons/favicon.svg">
+<title>[DRG BP Modding] 五. 在游戏中修改名字</title>
+
+
+
+</head>
+<style>
+body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
+#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
+#footer {margin-top:64px; text-align: center;font-size: small;}
+
+</style>
+
+<style>
+.postTitle{margin: auto 0;font-size:40px;font-weight:bold;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right .circle{padding: 14px 16px;margin-right:8px;}
+#postBody{border-bottom: 1px solid var(--color-border-default);padding-bottom:36px;}
+#postBody hr{height:2px;}
+#cmButton{height:48px;margin-top:48px;}
+#comments{margin-top:64px;}
+.g-emoji{font-size:24px;}
+@media (max-width: 600px) {
+    body {padding: 8px;}
+    .postTitle{font-size:24px;}
+}
+
+</style>
+
+
+
+
+<body>
+    <div id="header">
+<h1 class="postTitle">[DRG BP Modding] 五. 在游戏中修改名字</h1>
+<div class="title-right">
+    <a href="https://HatsuEcho.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathHome" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+    <a href="https://github.com/HatsuEcho/HatsuEcho.github.io/issues/5" target="_blank" class="btn btn-invisible circle" title="Issue">
+        <svg class="octicon" width="16" height="16">
+            <path id="pathIssue" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+    
+
+    <a class="btn btn-invisible circle" onclick="modeSwitch();" title="切换主题">
+        <svg class="octicon" width="16" height="16" >
+            <path id="themeSwitch" fill-rule="evenodd"></path>
+        </svg>
+    </a>
+
+</div>
+</div>
+    <div id="content">
+<div class="markdown-body" id="postBody"><p>这次要做的 Mod 会相对有趣一些, 但同时比较麻烦, 需要使用一些特殊手段, 请务必严格按照教程来做.<br>
+前面的步骤就不解释了, 如果你从前面几章看下来, 基本都知道要做什么.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e7cf4344-3ccb-48dd-8777-a2c69d8af7ee"><img src="https://github.com/user-attachments/assets/e7cf4344-3ccb-48dd-8777-a2c69d8af7ee" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/1c1e092d-3bd9-4f7c-8fde-efb963e1a56f"><img src="https://github.com/user-attachments/assets/1c1e092d-3bd9-4f7c-8fde-efb963e1a56f" alt="Image" style="max-width: 100%;"></a></p>
+<p>打开蓝图, 把父类改成玩家控制器.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/959bb825-95eb-455c-b902-fc77330c73ed"><img src="https://github.com/user-attachments/assets/959bb825-95eb-455c-b902-fc77330c73ed" alt="Image" style="max-width: 100%;"></a></p>
+<p>随便放置一个节点, 比如这个.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b2536f3c-3be9-4174-a2ed-a8bb6b6bbbf3"><img src="https://github.com/user-attachments/assets/b2536f3c-3be9-4174-a2ed-a8bb6b6bbbf3" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后随便找个地方右键新建关卡.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2332114d-2940-4015-91ee-a1bf8639a421"><img src="https://github.com/user-attachments/assets/2332114d-2940-4015-91ee-a1bf8639a421" alt="Image" style="max-width: 100%;"></a></p>
+<p>在左上角编辑, 项目设置, 左边选择地图和模式, 将地图设为刚才新建的关卡.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9e5e75d7-46cf-4cf9-8d23-8d2ef7662cd3"><img src="https://github.com/user-attachments/assets/9e5e75d7-46cf-4cf9-8d23-8d2ef7662cd3" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后重启一下引擎.<br>
+打开关卡蓝图.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e730d3d1-ba96-4e38-9670-7e95816c813b"><img src="https://github.com/user-attachments/assets/e730d3d1-ba96-4e38-9670-7e95816c813b" alt="Image" style="max-width: 100%;"></a></p>
+<p>放置该节点.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7ab9543b-e41e-41a5-9c17-a59e184e590f"><img src="https://github.com/user-attachments/assets/7ab9543b-e41e-41a5-9c17-a59e184e590f" alt="Image" style="max-width: 100%;"></a></p>
+<p>复制主蓝图的引用.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2dc58cf3-ea9e-410f-87af-c6f324727b14"><img src="https://github.com/user-attachments/assets/2dc58cf3-ea9e-410f-87af-c6f324727b14" alt="Image" style="max-width: 100%;"></a></p>
+<p>把长引用粘贴到节点中, 并且去掉前面和后面多余的的内容, 看起来像这样.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/620011cc-e121-4986-a54a-fe8f10d20566"><img src="https://github.com/user-attachments/assets/620011cc-e121-4986-a54a-fe8f10d20566" alt="Image" style="max-width: 100%;"></a></p>
+<p>回到主蓝图, 右键复制这个节点, 然后粘贴到记事本中.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/462ea549-9846-47c5-b4fb-da9f525c0bac"><img src="https://github.com/user-attachments/assets/462ea549-9846-47c5-b4fb-da9f525c0bac" alt="Image" style="max-width: 100%;"></a></p>
+<p>在该节点后面继续添加 <code class="notranslate">:EventGraph.</code> .</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/0458ac7c-0059-44c1-9c7f-121c9e20f3b4"><img src="https://github.com/user-attachments/assets/0458ac7c-0059-44c1-9c7f-121c9e20f3b4" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后在记事本中找到这个节点在编辑器中的名称, 复制粘贴到节点后方.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8d457d11-2532-4652-885f-af4de2ed5211"><img src="https://github.com/user-attachments/assets/8d457d11-2532-4652-885f-af4de2ed5211" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9dbef1d8-22d5-42fc-95c8-700d85ddb35d"><img src="https://github.com/user-attachments/assets/9dbef1d8-22d5-42fc-95c8-700d85ddb35d" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后依次放置这些节点.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/f4d52d98-6307-4bd1-a6f5-b2b1b0c5eeaf"><img src="https://github.com/user-attachments/assets/f4d52d98-6307-4bd1-a6f5-b2b1b0c5eeaf" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/479b6b9c-4e55-4c97-a5c7-77f2123055f4"><img src="https://github.com/user-attachments/assets/479b6b9c-4e55-4c97-a5c7-77f2123055f4" alt="Image" style="max-width: 100%;"></a></p>
+<p>接着在文件夹中新建蓝图函数库.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8a137cb3-4840-45c0-9173-59834fccd8cf"><img src="https://github.com/user-attachments/assets/8a137cb3-4840-45c0-9173-59834fccd8cf" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/512063a7-d306-401e-acc2-9680cba2a5a7"><img src="https://github.com/user-attachments/assets/512063a7-d306-401e-acc2-9680cba2a5a7" alt="Image" style="max-width: 100%;"></a></p>
+<p>在函数库里新建这两个函数, 名字必须跟图中一样, 然后不要点保存.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/21ed31db-0d30-4fb3-bb6b-f8ff52026f6a"><img src="https://github.com/user-attachments/assets/21ed31db-0d30-4fb3-bb6b-f8ff52026f6a" alt="Image" style="max-width: 100%;"></a></p>
+<p>到关卡蓝图中调用这两个函数.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d0359fb1-4970-459e-82ad-f58462256937"><img src="https://github.com/user-attachments/assets/d0359fb1-4970-459e-82ad-f58462256937" alt="Image" style="max-width: 100%;"></a></p>
+<p>保存好所有内容, 但是不要保存刚才新建的函数库, 然后关闭引擎重新打开.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2958d3e0-3d77-4779-b1be-4e4895ccaafe"><img src="https://github.com/user-attachments/assets/2958d3e0-3d77-4779-b1be-4e4895ccaafe" alt="Image" style="max-width: 100%;"></a></p>
+<p>忽略错误信息, 打开关卡蓝图, 可以看到, 这两个被人为隐藏的函数通过这种方法诱导出来了.<br>
+对这个函数填上变量值.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/cad0e3d8-7d02-42b9-a81b-36837ccebf6a"><img src="https://github.com/user-attachments/assets/cad0e3d8-7d02-42b9-a81b-36837ccebf6a" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后新建一个变量, 类型为命中结果.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/262c3e8e-9447-4b43-a4b8-6bb1b80a6b3e"><img src="https://github.com/user-attachments/assets/262c3e8e-9447-4b43-a4b8-6bb1b80a6b3e" alt="Image" style="max-width: 100%;"></a></p>
+<p>选中该变量, Ctrl + C 复制粘贴到记事本中.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/07de774b-debf-481c-96d9-7bf06c4226d2"><img src="https://github.com/user-attachments/assets/07de774b-debf-481c-96d9-7bf06c4226d2" alt="Image" style="max-width: 100%;"></a></p>
+<p>找到图中这一个字段, 将 <code class="notranslate">HitResult</code> 修改为 <code class="notranslate">MemberReference</code> .</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/7682cf4a-8177-4894-bb71-7240b98daa9a"><img src="https://github.com/user-attachments/assets/7682cf4a-8177-4894-bb71-7240b98daa9a" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/b31437b5-f458-4750-8a13-d4db0959ed9c"><img src="https://github.com/user-attachments/assets/b31437b5-f458-4750-8a13-d4db0959ed9c" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后把刚才粘贴的这一整段复制, 回到编辑器, 粘贴变量.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/090c432a-ce38-45b2-909d-72109f4686c4"><img src="https://github.com/user-attachments/assets/090c432a-ce38-45b2-909d-72109f4686c4" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/9f490e22-72a0-4562-87cc-b20e8b2b71d7"><img src="https://github.com/user-attachments/assets/9f490e22-72a0-4562-87cc-b20e8b2b71d7" alt="Image" style="max-width: 100%;"></a></p>
+<p>继续复制该变量的默认值, 粘贴到记事本.<br>
+找到这一段, 填上 <code class="notranslate">ServerChangeName</code> .</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/04c88249-0e65-4f7e-b953-abbb181c008c"><img src="https://github.com/user-attachments/assets/04c88249-0e65-4f7e-b953-abbb181c008c" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/6e98f5e8-8ffa-4db7-b299-c65265bba1f7"><img src="https://github.com/user-attachments/assets/6e98f5e8-8ffa-4db7-b299-c65265bba1f7" alt="Image" style="max-width: 100%;"></a></p>
+<p>复制主蓝图的引用, 替换这一段, 并掐头去尾, 在尾部加上 <code class="notranslate">_C</code> .</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/70c9dbdf-d771-4099-bdc4-2d31e59f4cf9"><img src="https://github.com/user-attachments/assets/70c9dbdf-d771-4099-bdc4-2d31e59f4cf9" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/34286f23-6c3b-4817-b8da-fb7461ec4be1"><img src="https://github.com/user-attachments/assets/34286f23-6c3b-4817-b8da-fb7461ec4be1" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/39093d0f-a338-41b5-9089-5b106d91e479"><img src="https://github.com/user-attachments/assets/39093d0f-a338-41b5-9089-5b106d91e479" alt="Image" style="max-width: 100%;"></a></p>
+<p>接着复制这一段, 粘贴到变量的默认值.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/142b7d8b-9059-441f-ab18-fd636d2508a2"><img src="https://github.com/user-attachments/assets/142b7d8b-9059-441f-ab18-fd636d2508a2" alt="Image" style="max-width: 100%;"></a></p>
+<p>把节点连接上, 编译保存.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/2aa8aa65-e1a8-4ca4-b8d4-a6c1ab2b446d"><img src="https://github.com/user-attachments/assets/2aa8aa65-e1a8-4ca4-b8d4-a6c1ab2b446d" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后运行该关卡, 等待1-2秒后关闭.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/8080ce84-6b52-42d5-8797-0bb2cf5f6159"><img src="https://github.com/user-attachments/assets/8080ce84-6b52-42d5-8797-0bb2cf5f6159" alt="Image" style="max-width: 100%;"></a></p>
+<p>打开主蓝图, 右键刷新节点, 可以看到原本的节点已经被我们篡改成这个被隐藏起来的节点, 但我们并不能通过编译, 因为该节点被人为设置成不允许调用.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/c72fc17a-e141-4860-bf92-0f2d82eb4d41"><img src="https://github.com/user-attachments/assets/c72fc17a-e141-4860-bf92-0f2d82eb4d41" alt="Image" style="max-width: 100%;"></a></p>
+<p>我们先断开这个节点的连接.<br>
+回到关卡蓝图, 连上第二个函数, 并填写好变量信息.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/ad052a36-4474-412a-bbec-afa9e4657694"><img src="https://github.com/user-attachments/assets/ad052a36-4474-412a-bbec-afa9e4657694" alt="Image" style="max-width: 100%;"></a></p>
+<p>然后再运行一次关卡, 退出, 这时可以看到, 节点已经成功通过编译了!</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/e19cc79b-d788-4ce0-8c62-a68ee530fcf0"><img src="https://github.com/user-attachments/assets/e19cc79b-d788-4ce0-8c62-a68ee530fcf0" alt="Image" style="max-width: 100%;"></a></p>
+<p>还没完, 记得把主蓝图的父类改回actor.<br>
+改回actor后, 就可以开始写你的 Mod 了.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/42c72a55-f3b3-4324-a978-532848d73906"><img src="https://github.com/user-attachments/assets/42c72a55-f3b3-4324-a978-532848d73906" alt="Image" style="max-width: 100%;"></a></p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/d881c13a-94dc-4c6b-881c-73bc183e5015"><img src="https://github.com/user-attachments/assets/d881c13a-94dc-4c6b-881c-73bc183e5015" alt="Image" style="max-width: 100%;"></a></p>
+<p>最后记得删掉关卡蓝图的内容.</p>
+<p><a target="_blank" rel="noopener noreferrer" href="https://github.com/user-attachments/assets/fc4cb8f3-b787-4ec6-811f-94a9ef182664"><img src="https://github.com/user-attachments/assets/fc4cb8f3-b787-4ec6-811f-94a9ef182664" alt="Image" style="max-width: 100%;"></a></p></div>
+<div style="font-size:small;margin-top:8px;float:right;"></div>
+
+<button class="btn btn-block" type="button" onclick="openComments()" id="cmButton">评论</button>
+<div class="comments" id="comments"></div>
+
+</div>
+    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://HatsuEcho.github.io">HatsuEcho</a></div>
+<div id="footer2">
+    <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
+</div>
+
+<script>
+var now=new Date();
+document.getElementById("copyrightYear").innerHTML=now.getFullYear();
+
+if(""!=""){
+    var startSite=new Date("");
+    var diff=now.getTime()-startSite.getTime();
+    var diffDay=Math.floor(diff/(1000*60*60*24));
+    document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
+}
+</script></div>
+</body>
+<script>
+var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
+var utterancesLoad=0;
+
+let themeSettings={
+    "dark": ["dark","moon","#00f0ff","dark-blue"],
+    "light": ["light","sun","#ff5000","github-light"],
+    "auto": ["auto","sync","","preferred-color-scheme"]
+};
+function changeTheme(mode, icon, color, utheme){
+    document.documentElement.setAttribute("data-color-mode",mode);
+    document.getElementById("themeSwitch").setAttribute("d",value=IconList[icon]);
+    document.getElementById("themeSwitch").parentNode.style.color=color;
+    if(utterancesLoad==1){utterancesTheme(utheme);}
+}
+function modeSwitch(){
+    let currentMode=document.documentElement.getAttribute('data-color-mode');
+    let newMode = currentMode === "light" ? "dark" : currentMode === "dark" ? "auto" : "light";
+    localStorage.setItem("meek_theme", newMode);
+    if(themeSettings[newMode]){
+        changeTheme(...themeSettings[newMode]);
+    }
+}
+function utterancesTheme(theme){
+    const message={type:'set-theme',theme: theme};
+    const iframe=document.getElementsByClassName('utterances-frame')[0];
+    iframe.contentWindow.postMessage(message,'https://utteranc.es');
+}
+if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
+console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+</script>
+
+<script>
+document.getElementById("pathHome").setAttribute("d",IconList["home"]);
+document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
+
+
+
+function openComments(){
+    cm=document.getElementById("comments");
+    cmButton=document.getElementById("cmButton");
+    cmButton.innerHTML="loading";
+    span=document.createElement("span");
+    span.setAttribute("class","AnimatedEllipsis");
+    cmButton.appendChild(span);
+
+    script=document.createElement("script");
+    script.setAttribute("src","https://utteranc.es/client.js");
+    script.setAttribute("repo","HatsuEcho/HatsuEcho.github.io");
+    script.setAttribute("issue-term","title");
+    
+    if(localStorage.getItem("meek_theme")=="dark"){script.setAttribute("theme","dark-blue");}
+    else if(localStorage.getItem("meek_theme")=="light") {script.setAttribute("theme","github-light");}
+    else{script.setAttribute("theme","preferred-color-scheme");}
+    
+    script.setAttribute("crossorigin","anonymous");
+    script.setAttribute("async","");
+    cm.appendChild(script);
+
+    int=self.setInterval("iFrameLoading()",200);
+}
+
+function iFrameLoading(){
+    var utterances=document.getElementsByClassName('utterances');
+    if(utterances.length==1){
+        if(utterances[0].style.height!=""){
+            utterancesLoad=1;
+            int=window.clearInterval(int);
+            document.getElementById("cmButton").style.display="none";
+            console.log("utterances Load OK");
+        }
+    }
+}
+
+
+
+</script>
+
+
+</html>
